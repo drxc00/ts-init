@@ -16,15 +16,15 @@ npx ts-init || npx ts-init [options]
 
 ## Options
 
-| Option | Description |
-|--------|-------------|
-| `-n, --name <name>` | Project name (default: "ts-app") |
-| `-d, --description <description>` | Project description |
-| `-t, --transpile <transpile>` | Enable TypeScript transpilation (default: true) |
-| `-o, --output-dir <outputDir>` | Output directory for transpiled files (default: "dist") |
-| `-l, --library <library>` | Configure as a library project (default: false) |
-| `-m, --monorepo <monorepo>` | Configure for monorepo usage (default: false) |
-| `-b, --dom <dom>` | Configure for browser/DOM usage (default: false) |
+| Option                            | Description                                             |
+| --------------------------------- | ------------------------------------------------------- |
+| `-n, --name <name>`               | Project name (default: "ts-app")                        |
+| `-d, --description <description>` | Project description                                     |
+| `-t, --transpile <transpile>`     | Enable TypeScript transpilation (default: true)         |
+| `-o, --output-dir <outputDir>`    | Output directory for transpiled files (default: "dist") |
+| `-l, --library <library>`         | Configure as a library project (default: false)         |
+| `-m, --monorepo <monorepo>`       | Configure for monorepo usage (default: false)           |
+| `-b, --dom <dom>`                 | Configure for browser/DOM usage (default: false)        |
 
 ## Example
 
@@ -49,3 +49,8 @@ To contribute or modify:
 5. Test your changes:
    ```bash
    npm test
+   ```
+
+## Acknowledgement
+
+- [Matt Pocock' Cheet Sheet](https://www.totaltypescript.com/tsconfig-cheat-sheet)

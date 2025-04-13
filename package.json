@@ -1,0 +1,54 @@
+{
+  "name": "@drxc00/ts-init",
+  "version": "1.0.0",
+  "description": "Yet another typescript tool.",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "ts-init": "dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "license": "AGPL-version-3.0",
+  "private": false,
+  "engines": {
+    "node": ">= 14.0.0",
+    "npm": ">= 6.0.0"
+  },
+  "homepage": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/drxc00/ts-init"
+  },
+  "bugs": "",
+  "keywords": [
+    "typescript",
+    "tool",
+    "cli"
+  ],
+  "author": {
+    "name": "",
+    "email": "npdvillanueva@gmail.com",
+    "url": "https://drxco.dev"
+  },
+  "contributors": [],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/index.js",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "@types/inquirer": "^9.0.7",
+    "@types/node": "^22.14.1",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "commander": "^13.1.0",
+    "inquirer": "^12.5.2"
+  }
+}

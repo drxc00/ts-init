@@ -1,6 +1,6 @@
 # ts-init
 
-A TypeScript project initialization CLI tool
+Setting up a `tsconfig.json` can be confusing and time-consuming — TS-INIT simplifies the process. It's a lightweight CLI tool that helps you quickly scaffold a clean, minimal TypeScript project. Perfect for starting small projects or experimenting with TypeScript without the hassle.
 
 ## Installation
 
@@ -45,10 +45,6 @@ To contribute or modify:
 4. Build the project:
    ```bash
    npm run build
-   ```
-5. Test your changes:
-   ```bash
-   npm test
    ```
 
 ## Acknowledgement

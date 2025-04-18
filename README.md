@@ -25,6 +25,7 @@ npx ts-init || npx ts-init [options]
 | `-l, --library <library>`         | Configure as a library project (default: false)         |
 | `-m, --monorepo <monorepo>`       | Configure for monorepo usage (default: false)           |
 | `-b, --dom <dom>`                 | Configure for browser/DOM usage (default: false)        |
+| `-i, --init <init>`               | Initialize the project (default: true)                  |
 
 ## Example
 

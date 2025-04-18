@@ -21,6 +21,7 @@ function main() {
     .option("-l, --library <library>", "Are you building a library?")
     .option("-m, --monorepo <monorepo>", "Is the library for a monorepo?")
     .option("-b, --dom <dom>", "Will your app be running in the browser?")
+    .option("-i, --init <init>", "Initialize the project?")
 
     .action(async (options) => {
       try {
@@ -151,6 +152,54 @@ function main() {
         }
 
         /**
+         * Initialization options
+         * Asks if the user wants to initialize the project
+         * This install dependencies like typescript and @types/node
+         * It also creates a src folder if the user wants to
+         * If the user wants to create a src folder, it creates an index.ts file in the src folder
+         */
+        let initOptions: {
+          initApp: boolean;
+          createSrcFolder: boolean;
+        } = { initApp: true, createSrcFolder: true };
+
+        if (!options.init) {
+          const initAnswer = await inquirer.prompt([
+            {
+              type: "confirm",
+              name: "init",
+              message:
+                "Do you want to initialize the project? (Instal typescript and @types/node)",
+              default: true,
+            },
+          ]);
+
+          initOptions.initApp = initAnswer.init;
+
+          // Add some options like create an src folder etc.
+          if (initAnswer.init) {
+            const createSrcFolderAnswer = await inquirer.prompt([
+              {
+                type: "confirm",
+                name: "createSrcFolder",
+                message: "Do you want to create a src folder?",
+                default: true,
+              },
+            ]);
+            initOptions.createSrcFolder = createSrcFolderAnswer.createSrcFolder;
+          }
+        }
+
+        /** Initilize the npm app */
+        if (initOptions.initApp) {
+          initNpmApp(
+            config.projectName,
+            config.projectDescription,
+            initOptions.createSrcFolder
+          );
+        }
+
+        /**
          * Create the ts config file
          * Create tsconfig.json
          * install dependencies
@@ -200,9 +249,6 @@ function main() {
                 }),
           },
         });
-
-        /** Initilize the npm app */
-        initNpmApp(config.projectName, config.projectDescription);
       } catch (error) {
         console.error(chalk.red("An error occurred:"), error);
       }

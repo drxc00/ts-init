@@ -4,7 +4,11 @@ import type { TsConfig } from "./types.js";
 import { execSync } from "child_process";
 import chalk from "chalk";
 
-export function initNpmApp(name: string, description: string) {
+export function initNpmApp(
+  name: string,
+  description: string,
+  createSrcFolder: boolean = false
+) {
   /**
    * @param {string} name - The name of the project
    * @param {string} description - The description of the project
@@ -17,6 +21,9 @@ export function initNpmApp(name: string, description: string) {
   try {
     // Indicate that we are initializing npm project
     console.log(chalk.green("Initializing npm project..."));
+
+    const rootDir = process.cwd();
+
     // Run default init
     execSync("npm init -y", { stdio: "ignore" });
 
@@ -26,7 +33,7 @@ export function initNpmApp(name: string, description: string) {
      * Set type to module
      * Install typescript and @types/node as dev dependencies
      */
-    const pkgPath = path.join(process.cwd(), "package.json");
+    const pkgPath = path.join(rootDir, "package.json");
     const pkg = JSON.parse(fs.readFileSync(pkgPath, "utf-8"));
     pkg.name = name;
     pkg.description = description;
@@ -34,8 +41,15 @@ export function initNpmApp(name: string, description: string) {
 
     fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2));
 
+    if (createSrcFolder) {
+      const srcPath = path.join(rootDir, "src");
+      fs.mkdirSync(srcPath);
+      fs.writeFileSync(path.join(srcPath, "index.ts"), "");
+    }
+
     // Install dependencies
     execSync("npm install --save-dev typescript @types/node", {
+      cwd: rootDir,
       stdio: "ignore",
     });
 
@@ -55,6 +69,10 @@ export function createTsConfigFile(tsConfig: TsConfig) {
    * View the tsConfig object type in types.ts
    */
   try {
+    // Ensure that we are in the root directory
+    process.chdir(process.cwd());
+
+    // Create tsconfig.json
     fs.writeFileSync(
       path.join(process.cwd(), "tsconfig.json"),
       JSON.stringify(tsConfig, null, 2)
